@@ -11,6 +11,10 @@ class QuoteTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "QuoteTableViewCell"
     
+    typealias OnFavoritesClick = (Int) -> Void
+    
+    private var onFavoritesClick: OnFavoritesClick?
+    
     private var itemId: Int?
     
     private let nameLabel = UILabel()
@@ -45,8 +49,15 @@ class QuoteTableViewCell: UITableViewCell {
         favoriteButton.setImage(UIImage(named: "no-favorite"), for: .normal)
         favoriteButton.setImage(UIImage(named: "favorite"), for: .selected)
         favoriteButton.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
         return stackView
     }()
+    
+    private var favorite: Bool = false {
+        didSet {
+            favoriteButton.isSelected = favorite
+        }
+    }
     
     private func setupSubviews() {
         contentView.addSubview(contentStackView)
@@ -74,7 +85,9 @@ class QuoteTableViewCell: UITableViewCell {
         last: String?,
         curency: String?,
         lastPercent: String?,
-        variationColor: UIColor?
+        variationColor: UIColor?,
+        isFavorite: Bool,
+        onFavoritesClick: OnFavoritesClick?
     ) {
         self.itemId = itemId
         nameLabel.text = name
@@ -82,5 +95,14 @@ class QuoteTableViewCell: UITableViewCell {
         currencyLabel.text = curency
         readableLastChangePercentLabel.text = lastPercent
         readableLastChangePercentLabel.textColor = variationColor
+        favorite = isFavorite
+        self.onFavoritesClick = onFavoritesClick
+    }
+    
+    @objc func didPressFavoriteButton(_ sender:UIButton!) {
+        if let itemId {
+            sender.isSelected = !sender.isSelected
+            onFavoritesClick?(itemId)
+        }
     }
 }

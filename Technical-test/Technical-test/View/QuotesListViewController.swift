@@ -13,6 +13,8 @@ class QuotesListViewController: UIViewController {
     
     private let dataManager: DataManager = DataManager()
     
+    var onFavoritesClick: QuoteTableViewCell.OnFavoritesClick?
+    
     var quotes: [Quote] = []
     
     override func viewDidLoad() {
@@ -30,6 +32,11 @@ class QuotesListViewController: UIViewController {
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
         ])
+        
+        onFavoritesClick = { [weak self] itemIndex in
+            self?.toggleFavorite(at: itemIndex)
+        }
+
         let activityViewController = ActivityViewController.showOnViewController(self)
         dataManager.fetchQuotes { [weak self] quotes, error in
             if let error = error {
@@ -68,7 +75,9 @@ extension QuotesListViewController: UITableViewDelegate, UITableViewDataSource {
             last: quote.last,
             curency: quote.currency,
             lastPercent: quote.readableLastChangePercent,
-            variationColor: quote.variationColor?.color
+            variationColor: quote.variationColor?.color,
+            isFavorite: dataManager.isFavorite(quote: quote),
+            onFavoritesClick: onFavoritesClick
         )
         return cell
     }
@@ -77,5 +86,9 @@ extension QuotesListViewController: UITableViewDelegate, UITableViewDataSource {
         let nc = self.navigationController
         let detailsVC = QuoteDetailsViewController(dataManager: dataManager, quote: quotes[indexPath.row])
         nc?.pushViewController(detailsVC, animated: false)
+    }
+    
+    func toggleFavorite(at index: Int) {
+        dataManager.toggleFavorites(quote: quotes[index])
     }
 }
