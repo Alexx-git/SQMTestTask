@@ -67,7 +67,8 @@ extension QuotesListViewController: UITableViewDelegate, UITableViewDataSource {
             name: quote.name,
             last: quote.last,
             curency: quote.currency,
-            lastPercent: quote.readableLastChangePercent
+            lastPercent: quote.readableLastChangePercent,
+            variationColor: quote.variationColor?.color
         )
         return cell
     }

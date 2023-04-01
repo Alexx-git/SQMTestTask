@@ -73,12 +73,14 @@ class QuoteTableViewCell: UITableViewCell {
         name: String?,
         last: String?,
         curency: String?,
-        lastPercent: String?
+        lastPercent: String?,
+        variationColor: UIColor?
     ) {
         self.itemId = itemId
         nameLabel.text = name
         lastLabel.text = last
         currencyLabel.text = curency
         readableLastChangePercentLabel.text = lastPercent
+        readableLastChangePercentLabel.textColor = variationColor
     }
 }
