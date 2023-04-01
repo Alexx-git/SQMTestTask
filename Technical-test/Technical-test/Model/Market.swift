@@ -7,8 +7,8 @@
 
 import Foundation
 
-
-class Market {
-    let marketName: String = "SMI"
-    var quotes: [Quote]? = []
-}
+// TODO: this class is currenly not in use, may be it was added for the future, but for now it will be commented
+//class Market: Codable {
+//    let marketName: String = "SMI"
+//    var quotes: [Quote]? = []
+//}
