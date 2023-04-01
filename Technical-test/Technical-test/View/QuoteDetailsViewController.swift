@@ -9,7 +9,8 @@ import UIKit
 
 class QuoteDetailsViewController: UIViewController {
     
-    private var quote:Quote? = nil
+    private let dataManager: DataManager
+    private let quote: Quote
     
     let symbolLabel = UILabel()
     let nameLabel = UILabel()
@@ -17,13 +18,11 @@ class QuoteDetailsViewController: UIViewController {
     let currencyLabel = UILabel()
     let readableLastChangePercentLabel = UILabel()
     let favoriteButton = UIButton()
-    
-    
-    
-    
-    init(quote:Quote) {
-        super.init(nibName: nil, bundle: nil)
+
+    init(dataManager: DataManager, quote: Quote) {
+        self.dataManager = dataManager
         self.quote = quote
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -36,12 +35,12 @@ class QuoteDetailsViewController: UIViewController {
         view.backgroundColor = .white
         addSubviews()
         setupAutolayout()
-        symbolLabel.text = quote?.symbol
-        nameLabel.text = quote?.name
-        lastLabel.text = quote?.last
-        currencyLabel.text = quote?.currency
-        readableLastChangePercentLabel.text = quote?.readableLastChangePercent
-        
+        symbolLabel.text = quote.symbol
+        nameLabel.text = quote.name
+        lastLabel.text = quote.last
+        currencyLabel.text = quote.currency
+        readableLastChangePercentLabel.text = quote.readableLastChangePercent
+        favoriteButton.isSelected = dataManager.isFavorite(quote: quote)
     }
     
     func addSubviews() {
@@ -66,13 +65,14 @@ class QuoteDetailsViewController: UIViewController {
         readableLastChangePercentLabel.font = .systemFont(ofSize: 30)
         
         favoriteButton.setTitle("Add to favorites", for: .normal)
+        favoriteButton.setTitle("Remove from favorites", for: .selected)
         favoriteButton.layer.cornerRadius = 6
         favoriteButton.layer.masksToBounds = true
         favoriteButton.layer.borderWidth = 3
         favoriteButton.layer.borderColor = UIColor.black.cgColor
         favoriteButton.addTarget(self, action: #selector(didPressFavoriteButton), for: .touchUpInside)
         favoriteButton.setTitleColor(.black, for: .normal)
-        
+        favoriteButton.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 8.0, bottom: 0.0, right: 8.0)
         
         view.addSubview(symbolLabel)
         view.addSubview(nameLabel)
@@ -121,14 +121,13 @@ class QuoteDetailsViewController: UIViewController {
                         
             favoriteButton.topAnchor.constraint(equalTo: readableLastChangePercentLabel.bottomAnchor, constant: 30),
             favoriteButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            favoriteButton.widthAnchor.constraint(equalToConstant: 150),
             favoriteButton.heightAnchor.constraint(equalToConstant: 44),
-            
+            favoriteButton.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor, constant: -32)
         ])
     }
     
-    
     @objc func didPressFavoriteButton(_ sender:UIButton!) {
-        // TODO
+        sender.isSelected = !sender.isSelected
+        self.dataManager.toggleFavorites(quote: quote)
     }
 }

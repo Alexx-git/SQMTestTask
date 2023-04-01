@@ -72,4 +72,10 @@ extension QuotesListViewController: UITableViewDelegate, UITableViewDataSource {
         )
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nc = self.navigationController
+        let detailsVC = QuoteDetailsViewController(dataManager: dataManager, quote: quotes[indexPath.row])
+        nc?.pushViewController(detailsVC, animated: false)
+    }
 }
