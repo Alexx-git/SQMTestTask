@@ -19,6 +19,8 @@
 		8B3B718C29D6C13D00EA1484 /* QuoteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B718B29D6C13D00EA1484 /* QuoteEntity.swift */; };
 		8B3B718E29D6C1BE00EA1484 /* MarketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B718D29D6C1BE00EA1484 /* MarketEntity.swift */; };
 		8B3B719029D6C26B00EA1484 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B718F29D6C26B00EA1484 /* Persistence.swift */; };
+		8B3B717B29D624DC00EA1484 /* QuoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B717A29D624DC00EA1484 /* QuoteTableViewCell.swift */; };
+		8B3B718529D665F400EA1484 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B718429D665F400EA1484 /* ActivityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		8B3B718B29D6C13D00EA1484 /* QuoteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteEntity.swift; sourceTree = "<group>"; };
 		8B3B718D29D6C1BE00EA1484 /* MarketEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntity.swift; sourceTree = "<group>"; };
 		8B3B718F29D6C26B00EA1484 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		8B3B717A29D624DC00EA1484 /* QuoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTableViewCell.swift; sourceTree = "<group>"; };
+		8B3B718429D665F400EA1484 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 			children = (
 				1AA3C89A263AA2030041430A /* QuotesListViewController.swift */,
 				1AA3C8B5263AB26C0041430A /* QuoteDetailsViewController.swift */,
+				8B3B717A29D624DC00EA1484 /* QuoteTableViewCell.swift */,
+				8B3B718429D665F400EA1484 /* ActivityViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,8 +195,10 @@
 				1AA3C8B6263AB26C0041430A /* QuoteDetailsViewController.swift in Sources */,
 				1AA3C89B263AA2030041430A /* QuotesListViewController.swift in Sources */,
 				1AA3C8B2263AA8360041430A /* DataManager.swift in Sources */,
+				8B3B718529D665F400EA1484 /* ActivityViewController.swift in Sources */,
 				1AA3C8BA263AB2980041430A /* Quote.swift in Sources */,
 				8B3B718A29D6C01B00EA1484 /* SQMTestTask.xcdatamodeld in Sources */,
+				8B3B717B29D624DC00EA1484 /* QuoteTableViewCell.swift in Sources */,
 				1AA3C897263AA2030041430A /* AppDelegate.swift in Sources */,
 				1AC78CBF263C6686004D4F8F /* Market.swift in Sources */,
 				8B3B718C29D6C13D00EA1484 /* QuoteEntity.swift in Sources */,
